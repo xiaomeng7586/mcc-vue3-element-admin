@@ -6,6 +6,8 @@ import ElementPlus from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css'
 import locale from 'element-plus/lib/locale/lang/zh-cn'
 import './styles/index.scss'
+import installIcons from './icons'
 
 const app = createApp(App)
+installIcons(app)
 app.use(store).use(router).use(ElementPlus, { locale }).mount('#app')
