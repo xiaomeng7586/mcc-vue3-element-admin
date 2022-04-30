@@ -1,22 +1,22 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form">
+    <el-form class="login-form" :model="loginForm" :rules="loginRules">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
       <!-- username -->
-      <el-form-item>
+      <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon="user" />
         </span>
-        <el-input placeholder="username" name="username" type="text"></el-input>
+        <el-input v-model="loginForm.username" placeholder="username" name="username" type="text"></el-input>
       </el-form-item>
       <!-- password -->
-      <el-form-item>
+      <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon="password" />
         </span>
-        <el-input placeholder="password" name="password"></el-input>
+        <el-input v-model="loginForm.password" placeholder="password" name="password"></el-input>
         <span class="svg-container">
           <svg-icon icon="eye" />
         </span>
@@ -28,6 +28,31 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import { passwordValidate } from './validate'
+// 登录数据
+const loginForm = ref({
+  username: 'super-admin',
+  password: '123456'
+})
+
+// 表单验证
+const loginRules = ref({
+  username: [
+    {
+      required: true,
+      trigger: 'blur',
+      message: '用户名为必填项'
+    }
+  ],
+  password: [
+    {
+      required: true,
+      trigger: 'blur',
+      validator: passwordValidate()
+    }
+  ]
+})
 </script>
 
 <style lang="scss" scoped>
