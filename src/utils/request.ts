@@ -1,5 +1,4 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { ElLoading } from 'element-plus' // 导入ElLoading
 
 export interface Data {
   [k:string]:any
@@ -7,7 +6,6 @@ export interface Data {
 export default class Request {
   [x: string]: any
   public static axiosInstance: AxiosInstance
-  public static loading?:any
 
   public static init ():AxiosInstance {
     this.axiosInstance = axios.create({
@@ -29,12 +27,6 @@ export default class Request {
     */
     this.axiosInstance.interceptors.request.use(
       (config:AxiosRequestConfig) => {
-        this.loading = ElLoading.service({
-          lock: true,
-          text: '正在请求数据...',
-          background: 'rgb(0,0,0,0.5)'
-        })
-
         const token = localStorage.getItem('ACCESS_TOKEN')
         if (token) {
           (config as any).headers.Authorization = 'Author' + token
@@ -51,8 +43,6 @@ export default class Request {
     */
     this.axiosInstance.interceptors.response.use(
       (response:AxiosResponse) => {
-        (this.loading as any).close()
-
         if (response.status === 200) {
           return Promise.resolve(response)
         } else {
