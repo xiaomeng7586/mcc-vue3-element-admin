@@ -1,8 +1,4 @@
-import Request from '@/utils/request'
-
-interface Data {
-  [k:string]:unknown
-}
+import Request, { Data } from '@/utils/request'
 
 export const login = (data:Data):Request => {
   return Request.axiosInstance({

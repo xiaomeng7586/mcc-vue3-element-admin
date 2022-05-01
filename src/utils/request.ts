@@ -1,7 +1,11 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { ElLoading } from 'element-plus' // 导入ElLoading
 
+export interface Data {
+  [k:string]:any
+}
 export default class Request {
+  [x: string]: any
   public static axiosInstance: AxiosInstance
   public static loading?:any
 
@@ -50,7 +54,7 @@ export default class Request {
         (this.loading as any).close()
 
         if (response.status === 200) {
-          return response
+          return Promise.resolve(response)
         } else {
           Request.errorHandle(response)
           return response
