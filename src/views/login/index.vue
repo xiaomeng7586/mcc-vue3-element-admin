@@ -16,9 +16,9 @@
         <span class="svg-container">
           <svg-icon icon="password" />
         </span>
-        <el-input v-model="loginForm.password" placeholder="password" name="password"></el-input>
-        <span class="svg-container">
-          <svg-icon icon="eye" />
+        <el-input v-model="loginForm.password" placeholder="password" :type="passwordType" name="password"></el-input>
+        <span class="show-pwd" @click="onChangePwsType">
+          <svg-icon :icon="passwordType === 'password'? 'eye':'eye-open'" />
         </span>
       </el-form-item>
       <!-- 登录按钮 -->
@@ -53,6 +53,16 @@ const loginRules = ref({
     }
   ]
 })
+
+// 密码显示与隐藏
+const passwordType = ref('password')
+const onChangePwsType = () => {
+  if (passwordType.value === 'password') {
+    passwordType.value = 'text'
+  } else {
+    passwordType.value = 'password'
+  }
+}
 </script>
 
 <style lang="scss" scoped>
