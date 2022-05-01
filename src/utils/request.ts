@@ -21,6 +21,7 @@ export default class Request {
      * 设置请求头
     */
     this.axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+    this.axiosInstance.defaults.headers.post.icode = 'F38D6BD18E2F7AD6'
 
     /**
      * 请求拦截器

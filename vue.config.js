@@ -18,5 +18,13 @@ module.exports = {
         symbolId: 'icon-[name]'
       })
       .end()
+  },
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'https://api.imooc-admin.lgdsunday.club/',
+        changeOrigin: true
+      }
+    }
   }
 }

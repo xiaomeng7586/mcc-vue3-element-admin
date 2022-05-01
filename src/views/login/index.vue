@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" :model="loginForm" :rules="loginRules">
+    <el-form class="login-form" ref="loginFormRef" :model="loginForm" :rules="loginRules">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -22,13 +22,14 @@
         </span>
       </el-form-item>
       <!-- 登录按钮 -->
-      <el-button type="primary" style="width:100%;margin-bottom:30px">登录</el-button>
+      <el-button type="primary" style="width:100%;margin-bottom:30px" @click="confirmLogin">登录</el-button>
     </el-form>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useStore } from 'vuex'
 import { passwordValidate } from './validate'
 // 登录数据
 const loginForm = ref({
@@ -62,6 +63,22 @@ const onChangePwsType = () => {
   } else {
     passwordType.value = 'password'
   }
+}
+
+const loginFormRef = ref(null)
+const store = useStore()
+console.log('store', store)
+// 登录
+const confirmLogin = () => {
+  (loginFormRef as any).value.validate((valid:boolean) => {
+    if (!valid) return false
+    store.dispatch('login', loginForm.value)
+      .then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+  })
 }
 </script>
 
