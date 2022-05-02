@@ -24,7 +24,7 @@ export default {
           username,
           password: md5(password)
         }).then((res:any) => {
-          context.commit('setToken', res.data.data.token)
+          context.commit('setToken', res.token)
           resolve(res)
         }).catch((error:any) => {
           reject(error)

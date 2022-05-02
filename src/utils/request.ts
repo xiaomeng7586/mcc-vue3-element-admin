@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { ElMessage } from 'element-plus'
 
 export interface Data {
   [k:string]:any
@@ -44,21 +45,18 @@ export default class Request {
     */
     this.axiosInstance.interceptors.response.use(
       (response:AxiosResponse) => {
-        if (response.status === 200) {
-          return Promise.resolve(response)
+        console.log('response', response)
+        const { success, message, data } = response.data
+        if (success) {
+          return data
         } else {
-          Request.errorHandle(response)
-          return response
+          ElMessage.error(message)
+          return Promise.reject(new Error(message))
         }
       },
       (error:any) => {
-        const { response } = error
-        if (response) {
-          Request.errorHandle(response)
-          return Promise.reject(response.data)
-        } else {
-          console.log('网络连接异常，请稍后重试')
-        }
+        ElMessage.error(error.message)
+        return Promise.reject(new Error(error))
       }
     )
   }
