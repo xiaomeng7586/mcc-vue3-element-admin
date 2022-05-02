@@ -1,4 +1,4 @@
-import { login } from '@/api/sys'
+import { login, getUserInfo } from '@/api/sys'
 import md5 from 'md5'
 import { getItem, setItem } from '@/utils/storage'
 import { TOKEN } from '@/constance'
@@ -9,12 +9,16 @@ interface ResData {
 export default {
   namespace: true,
   state: ():any => ({
-    token: getItem(TOKEN) || ''
+    token: getItem(TOKEN) || '',
+    userInfo: {}
   }),
   mutations: {
     setToken (context:ResData, value:ResData):void {
       context.token = value
       setItem(TOKEN, value)
+    },
+    setUserInfo (context:ResData, userInfo:ResData):void {
+      context.userInfo = userInfo
     }
   },
   actions: {
@@ -33,6 +37,11 @@ export default {
           reject(error)
         })
       })
+    },
+    async getUserInfo (context:ResData):Promise<any> {
+      const res = await getUserInfo()
+      context.commit('setUserInfo', res)
+      return res
     }
   }
 }

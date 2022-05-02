@@ -6,8 +6,11 @@ const whiteList = ['/login']
 router.beforeEach((to, from, next) => {
   if (store.getters.token) {
     if (to.path === '/login') {
-      next('')
+      next('/')
     } else {
+      if (!store.getters.hasUserInfo) {
+        store.dispatch('getUserInfo')
+      }
       next()
     }
   } else {

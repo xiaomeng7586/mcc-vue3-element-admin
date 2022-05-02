@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
+import store from '@/store'
 
 export interface Data {
   [k:string]:any
@@ -22,21 +23,21 @@ export default class Request {
      * 设置请求头
     */
     this.axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-    this.axiosInstance.defaults.headers.post.icode = 'F38D6BD18E2F7AD6'
 
     /**
      * 请求拦截器
     */
     this.axiosInstance.interceptors.request.use(
       (config:AxiosRequestConfig) => {
-        const token = localStorage.getItem('ACCESS_TOKEN')
-        if (token) {
-          (config as any).headers.Authorization = 'Author' + token
+        (config as any).headers.icode = 'F38D6BD18E2F7AD6'
+        if (store.getters.token) {
+          // Authorization
+          (config as any).headers.Authorization = `Bearer ${store.getters.token}`
         }
         return config
       },
       (error: any) => {
-        console.log(error)
+        return Promise.reject(error)
       }
     )
 
