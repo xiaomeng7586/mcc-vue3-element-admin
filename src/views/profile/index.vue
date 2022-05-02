@@ -1,12 +1,11 @@
 <template>
   <div>
-    <h1>占位符</h1>
-    <sidebar-menu></sidebar-menu>
+  个人中心
   </div>
 </template>
 
 <script setup lang="ts">
-import sidebarMenu from './sidebarMenu.vue'
+
 </script>
 
 <style scoped>
