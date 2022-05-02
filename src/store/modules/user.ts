@@ -2,6 +2,7 @@ import { login } from '@/api/sys'
 import md5 from 'md5'
 import { getItem, setItem } from '@/utils/storage'
 import { TOKEN } from '@/constance'
+import router from '@/router'
 interface ResData {
   [k:string]:any
 }
@@ -25,6 +26,8 @@ export default {
           password: md5(password)
         }).then((res:any) => {
           context.commit('setToken', res.token)
+          // 登录后跳转
+          router.push('/')
           resolve(res)
         }).catch((error:any) => {
           reject(error)
