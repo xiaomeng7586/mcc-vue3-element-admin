@@ -1,6 +1,6 @@
 import { login, getUserInfo } from '@/api/sys'
 import md5 from 'md5'
-import { getItem, setItem } from '@/utils/storage'
+import { getItem, setItem, removeAllItem } from '@/utils/storage'
 import { TOKEN } from '@/constance'
 import router from '@/router'
 interface ResData {
@@ -42,6 +42,12 @@ export default {
       const res = await getUserInfo()
       context.commit('setUserInfo', res)
       return res
+    },
+    logout (context:ResData):void {
+      context.commit('setToken', '')
+      context.commit('setUserInfo', {})
+      removeAllItem()
+      router.push('/login')
     }
   }
 }

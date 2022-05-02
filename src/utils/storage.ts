@@ -24,12 +24,12 @@ export const getItem = (key:string):any => {
  * 清除指定缓存
 */
 export const removeItem = (key:string):void => {
-  localStorage.removeItem(key)
+  window.localStorage.removeItem(key)
 }
 
 /**
  * 清除所有缓存
 */
-export const clearItem = () => {
-  localStorage.clear()
+export const removeAllItem = ():void => {
+  window.localStorage.clear()
 }
