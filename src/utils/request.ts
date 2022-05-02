@@ -62,30 +62,14 @@ export default class Request {
         }
       },
       (error:any) => {
-        ElMessage.error(error.message)
+        if (error.response && error.response.data && error.response.data.code === 401) {
+          store.dispatch('logout')
+          ElMessage.error(error.response.data.message)
+        } else {
+          ElMessage.error(error.message)
+        }
         return Promise.reject(new Error(error))
       }
     )
-  }
-
-  /**
-   * http握手错误
-   * @param res 响应回调,根据不同响应进行不同操作
-   */
-  private static errorHandle (res: any) {
-    // 状态码判断
-    switch (res.status) {
-      case 401:
-        break
-      case 403:
-        break
-      case 404:
-        // message.warn('请求的资源不存在'),
-        console.log('请求的资源不存在')
-        break
-      default:
-        // message.warn('连接错误')
-        console.log('连接错误')
-    }
   }
 }
