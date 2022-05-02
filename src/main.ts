@@ -9,6 +9,7 @@ import './styles/index.scss'
 import installIcons from './icons'
 import Request from './utils/request'
 import VueAxios from 'vue-axios'
+import './permission'
 
 const app = createApp(App)
 installIcons(app)
