@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
 import store from '@/store'
+import { isCheckoutTimeStamp } from './auth'
 
 export interface Data {
   [k:string]:any
@@ -31,6 +32,11 @@ export default class Request {
       (config:AxiosRequestConfig) => {
         (config as any).headers.icode = 'F38D6BD18E2F7AD6'
         if (store.getters.token) {
+          // 判断是否过期
+          if (isCheckoutTimeStamp()) {
+            store.dispatch('logout')
+            return Promise.reject(new Error('Token失效'))
+          }
           // Authorization
           (config as any).headers.Authorization = `Bearer ${store.getters.token}`
         }

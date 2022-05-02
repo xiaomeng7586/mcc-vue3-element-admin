@@ -3,6 +3,7 @@ import md5 from 'md5'
 import { getItem, setItem, removeAllItem } from '@/utils/storage'
 import { TOKEN } from '@/constance'
 import router from '@/router'
+import { setTimeStamp } from '@/utils/auth'
 interface ResData {
   [k:string]:any
 }
@@ -32,6 +33,8 @@ export default {
           context.commit('setToken', res.token)
           // 登录后跳转
           router.push('/')
+          // 设置时间戳
+          setTimeStamp()
           resolve(res)
         }).catch((error:any) => {
           reject(error)
