@@ -8,7 +8,7 @@ interface ResData {
   [k:string]:any
 }
 export default {
-  namespace: true,
+  namespaced: true,
   state: ():any => ({
     token: getItem(TOKEN) || '',
     userInfo: {}

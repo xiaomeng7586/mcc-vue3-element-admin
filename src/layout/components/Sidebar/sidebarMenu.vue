@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-menu
+      :collapse="!$store.getters.sidebarOpened"
       :default-active="activeMenu"
       :uniqueOpened="true"
       :active-text-color="$store.getters.cssvar.menuActiveText"
