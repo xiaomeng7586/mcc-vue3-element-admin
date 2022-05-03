@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import sidebarMenu from './sidebarMenu.vue'
+import SidebarMenu from './SidebarMenu.vue'
 </script>
 
 <style scoped>
