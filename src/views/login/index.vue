@@ -72,7 +72,7 @@ console.log('store', store)
 const confirmLogin = () => {
   (loginFormRef as any).value.validate((valid:boolean) => {
     if (!valid) return false
-    store.dispatch('login', loginForm.value)
+    store.dispatch('user/login', loginForm.value)
       .then(res => {
         console.log(res)
       }).catch(err => {

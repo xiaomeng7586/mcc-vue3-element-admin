@@ -34,7 +34,7 @@ export default class Request {
         if (store.getters.token) {
           // 判断是否过期
           if (isCheckoutTimeStamp()) {
-            store.dispatch('logout')
+            store.dispatch('user/logout')
             return Promise.reject(new Error('Token失效'))
           }
           // Authorization
@@ -63,7 +63,7 @@ export default class Request {
       },
       (error:any) => {
         if (error.response && error.response.data && error.response.data.code === 401) {
-          store.dispatch('logout')
+          store.dispatch('user/logout')
           ElMessage.error(error.response.data.message)
         } else {
           ElMessage.error(error.message)
