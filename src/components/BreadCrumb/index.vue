@@ -12,7 +12,25 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
+const breadcrumbData = ref<unknown>([])
+const formatBreadcrumbData = () => {
+  breadcrumbData.value = route.matched.filter(item => item.meta && item.meta.title)
+  console.log(breadcrumbData.value)
+}
+
+watch(
+  route,
+  () => {
+    formatBreadcrumbData()
+  },
+  {
+    immediate: true
+  }
+)
 </script>
 
 <style lang="scss" scoped>
