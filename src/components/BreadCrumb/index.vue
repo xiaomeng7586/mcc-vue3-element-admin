@@ -1,12 +1,13 @@
 <template>
   <el-breadcrumb class="breadcrumb" separator="/">
-
-    <el-breadcrumb-item v-for="(item,index) in breadcrumbData" :key="item.path">
+    <transition-group name="breadcrumb">
+      <el-breadcrumb-item v-for="(item,index) in breadcrumbData" :key="item.path">
       <!-- 不可点击 -->
       <span class="no-redirect" v-if="index === breadcrumbData.length - 1">{{item.meta.title}}</span>
       <!-- 可点击 -->
       <span class="redirect" v-else @click="onLink(item.path)">{{item.meta.title}}</span>
     </el-breadcrumb-item>
+    </transition-group>
   </el-breadcrumb>
 </template>
 
@@ -19,7 +20,6 @@ const route = useRoute()
 const breadcrumbData = ref<any>([])
 const formatBreadcrumbData = () => {
   breadcrumbData.value = route.matched.filter(item => item.meta && item.meta.title)
-  console.log(breadcrumbData.value)
 }
 
 watch(
