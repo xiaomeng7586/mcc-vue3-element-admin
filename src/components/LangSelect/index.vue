@@ -48,7 +48,7 @@ const handleSetLanguage = (lang:string) => {
   // 修改vuex中保存的language
   store.commit('app/setLanguage', lang)
   // 提示
-  ElMessage.success('修改成功')
+  ElMessage.success(i18n.t('msg.toast.switchLangSuccess'))
 }
 </script>
 

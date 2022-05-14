@@ -2,7 +2,8 @@
   <div class="login-container">
     <el-form class="login-form" ref="loginFormRef" :model="loginForm" :rules="loginRules">
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{$t('msg.login.title')}}</h3>
+        <lang-select class="lang-select" effect="light"></lang-select>
       </div>
       <!-- username -->
       <el-form-item prop="username">
@@ -22,7 +23,8 @@
         </span>
       </el-form-item>
       <!-- 登录按钮 -->
-      <el-button type="primary" style="width:100%;margin-bottom:30px" @click="confirmLogin">登录</el-button>
+      <el-button type="primary" style="width:100%;margin-bottom:30px" @click="confirmLogin">{{$t('msg.login.loginBtn')}}</el-button>
+      <div class="tips" v-html="$t('msg.login.desc')"></div>
     </el-form>
   </div>
 </template>
@@ -31,19 +33,22 @@
 import { ref } from 'vue'
 import { useStore } from 'vuex'
 import { passwordValidate } from './validate'
+import LangSelect from '@/components/LangSelect/index.vue'
+import { useI18n } from 'vue-i18n'
 // 登录数据
 const loginForm = ref({
   username: 'super-admin',
   password: '123456'
 })
 
+const i18n = useI18n()
 // 表单验证
 const loginRules = ref({
   username: [
     {
       required: true,
       trigger: 'blur',
-      message: '用户名为必填项'
+      message: i18n.t('msg.login.usernameRule')
     }
   ],
   password: [
@@ -179,5 +184,6 @@ $cursor: #fff;
     cursor: pointer;
     user-select: none;
   }
+
 }
 </style>
