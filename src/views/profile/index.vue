@@ -1,11 +1,6 @@
 <template>
   <div>
-    {{$t('msg.test')}}
-    <el-pagination
-      :page-sizes="[100, 200, 300, 400]"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="400"
-    />
+    个人中心
   </div>
 </template>
 

@@ -25,7 +25,7 @@ const privateRoutes: Array<RouteRecordRaw> = [
         name: 'userRole',
         component: () => import('@/views/role-list/index.vue'),
         meta: {
-          title: 'userRole',
+          title: 'roleList',
           icon: 'role'
         }
       },
@@ -34,7 +34,7 @@ const privateRoutes: Array<RouteRecordRaw> = [
         name: 'userPermission',
         component: () => import('@/views/permission-list/index.vue'),
         meta: {
-          title: 'userPermission',
+          title: 'permissionList',
           icon: 'permission'
         }
       },
