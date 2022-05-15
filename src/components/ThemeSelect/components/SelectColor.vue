@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import { defineProps, defineEmits, ref } from 'vue'
+import { useStore } from 'vuex'
 
 defineProps({
   modelValue: {
@@ -46,8 +47,9 @@ const predefineColors = [
   '#c7158577'
 ]
 
+const store = useStore()
 // 默认色值
-const mColor = ref('#00ff00')
+const mColor = ref(store.getters.mainColor)
 // 关闭
 const closed = () => {
   emits('update:modelValue')
@@ -55,10 +57,16 @@ const closed = () => {
 
 // 确认
 const confirm = () => {
+  store.commit('theme/setMainColor', mColor.value)
   closed()
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.content {
+  text-align: center;
+  .title {
+    margin-bottom: 12px;
+  }
+}
 </style>
