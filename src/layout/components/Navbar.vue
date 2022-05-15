@@ -3,6 +3,8 @@
     <hamburger class="hamburger-container" />
     <breadCrumb class="breadcrumb-container" />
     <div class="right-menu">
+      <!-- 主题更换 -->
+      <theme-picker class="right-menu-item hover-effect"></theme-picker>
       <!-- 国际化 -->
       <lang-select class="right-menu-item hover-effect"></lang-select>
       <!-- 头像 -->
@@ -32,6 +34,7 @@ import { useStore } from 'vuex'
 import hamburger from '@/components/hamburger/index.vue'
 import breadCrumb from '@/components/BreadCrumb/index.vue'
 import LangSelect from '@/components/LangSelect/index.vue'
+import ThemePicker from '@/components/ThemeSelect/index.vue'
 const store = useStore()
 const logout = () => {
   store.dispatch('user/logout')
