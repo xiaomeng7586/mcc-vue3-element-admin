@@ -1,4 +1,4 @@
-import { LANG } from '@/constance'
+import { LANG } from '@/constant'
 import { getItem, setItem } from '@/utils/storage'
 export default {
   namespaced: true,

@@ -1,4 +1,4 @@
-import { TIME_STAMP, TIMEOUT_VALUE } from '@/constance'
+import { TIME_STAMP, TIMEOUT_VALUE } from '@/constant'
 import { setItem, getItem } from './storage'
 
 /**

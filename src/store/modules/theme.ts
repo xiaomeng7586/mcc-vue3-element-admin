@@ -1,4 +1,4 @@
-import { MAIN_COLOR, DEFAULT_COLOR } from '@/constance'
+import { MAIN_COLOR, DEFAULT_COLOR } from '@/constant'
 import { getItem, setItem } from '@/utils/storage'
 export default {
   namespaced: true,

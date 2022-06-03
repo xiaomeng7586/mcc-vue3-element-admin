@@ -30,7 +30,7 @@ export default class Request {
     */
     this.axiosInstance.interceptors.request.use(
       (config:AxiosRequestConfig) => {
-        (config as any).headers.icode = 'F38D6BD18E2F7AD6'
+        (config as any).headers.icode = '1779A2FF2DA914C2'
         if (store.getters.token) {
           // 判断是否过期
           if (isCheckoutTimeStamp()) {

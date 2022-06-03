@@ -1,7 +1,7 @@
 import { login, getUserInfo } from '@/api/sys'
 import md5 from 'md5'
 import { getItem, setItem, removeAllItem } from '@/utils/storage'
-import { TOKEN } from '@/constance'
+import { TOKEN } from '@/constant'
 import router from '@/router'
 import { setTimeStamp } from '@/utils/auth'
 interface ResData {
