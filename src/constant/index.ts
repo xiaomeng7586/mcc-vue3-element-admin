@@ -8,4 +8,4 @@ export const LANG = 'language'
 // 主题色key
 export const MAIN_COLOR = 'mainColor'
 // 默认主题色
-export const DEFAULT_COLOR = '00ff00'
+export const DEFAULT_COLOR = '#00ff00'

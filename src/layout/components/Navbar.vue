@@ -3,6 +3,8 @@
     <hamburger class="hamburger-container" />
     <breadCrumb class="breadcrumb-container" />
     <div class="right-menu">
+      <!-- 全屏切换 -->
+      <screen-full class="right-menu-item hover-effect"></screen-full>
       <!-- 主题更换 -->
       <theme-picker class="right-menu-item hover-effect"></theme-picker>
       <!-- 国际化 -->
@@ -35,6 +37,7 @@ import hamburger from '@/components/hamburger/index.vue'
 import breadCrumb from '@/components/BreadCrumb/index.vue'
 import LangSelect from '@/components/LangSelect/index.vue'
 import ThemePicker from '@/components/ThemeSelect/index.vue'
+import ScreenFull from '@/components/ScreenFull/index.vue'
 const store = useStore()
 const logout = () => {
   store.dispatch('user/logout')
