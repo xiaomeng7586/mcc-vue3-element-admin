@@ -20,14 +20,35 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { filterRouters, generateMenus } from '@/utils/route'
+import { filterRoutes } from '@/utils/route'
+import { generateRoutes } from './FuseData'
+import Fuse from 'fuse.js'
 
 // 数据源
 const router = useRouter()
 const searchPool = computed(() => {
-  const filterRoutes = filterRouters(router.getRoutes() as any)
-  return generateMenus(filterRoutes)
+  const routes = filterRoutes(router.getRoutes() as any)
+  return generateRoutes(routes)
 })
+console.log(searchPool.value)
+
+// 搜索库相关
+const fuse = new Fuse((searchPool as any).value, {
+  shouldSort: true,
+  minMatchCharLength: 1,
+  keys: [
+    {
+      name: 'title',
+      weight: 0.7
+    },
+    {
+      name: 'path',
+      weight: 0.5
+    }
+  ]
+})
+
+console.log(fuse)
 
 // 控制search展示
 const isShow = ref(false)
@@ -38,8 +59,8 @@ const onShowClick = () => {
 // search相关
 const search = ref('')
 // 搜索方法
-const querySearch = () => {
-  console.log('querySearch')
+const querySearch = (query:string) => {
+  console.log(fuse.search(query))
 }
 // 选中回调
 const onSelectChange = () => {

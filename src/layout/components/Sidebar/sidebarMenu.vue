@@ -17,12 +17,12 @@
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router'
 import { computed } from 'vue'
-import { filterRouters, generateMenus } from '@/utils/route'
+import { filterRoutes, generateMenus } from '@/utils/route'
 import SidebarItem from './SidebarItem.vue'
 
 const router = useRouter()
 const routes = computed(() => {
-  const filterRoute = filterRouters((router.getRoutes() as any))
+  const filterRoute = filterRoutes((router.getRoutes() as any))
   return generateMenus(filterRoute)
 })
 

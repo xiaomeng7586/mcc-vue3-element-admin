@@ -25,7 +25,7 @@ const getChildrenRoutes = (routes:Array<RouteItem>) => {
 /**
  * 处理脱离层级的路由
 */
-export const filterRouters = (routes:Array<RouteItem>):Array<RouteItem> => {
+export const filterRoutes = (routes:Array<RouteItem>):Array<RouteItem> => {
   const childrenRoutes = getChildrenRoutes(routes)
   return routes.filter(route => {
     return !childrenRoutes.find(childrenRoute => {
