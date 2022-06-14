@@ -12,13 +12,13 @@
       placeholder="search"
       @change="onSelectChange"
     >
-      <el-option v-for="option in 5" :key="option" :value="option" :lable="option"></el-option>
+      <el-option v-for="option in searchOptions" :key="option.item.title" :value="option.item.path" :label="option.item.title.join(' > ')"></el-option>
     </el-select>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, Ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { filterRoutes } from '@/utils/route'
 import { generateRoutes } from './FuseData'
@@ -58,13 +58,15 @@ const onShowClick = () => {
 
 // search相关
 const search = ref('')
+// 搜索列表
+const searchOptions:Ref<any> = ref([])
 // 搜索方法
 const querySearch = (query:string) => {
-  console.log(fuse.search(query))
+  searchOptions.value = fuse.search(query)
 }
 // 选中回调
-const onSelectChange = () => {
-  console.log('onSelectChange')
+const onSelectChange = (path:string) => {
+  router.push(path)
 }
 </script>
 
